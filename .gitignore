@@ -35,6 +35,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
-firebaseConfig.js
-secretsanta-577bf-firebase-adminsdk-jbppv-4062a40ef7.json
