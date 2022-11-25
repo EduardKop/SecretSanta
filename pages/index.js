@@ -41,14 +41,12 @@ export default function Home() {
       [id]: {
           "players":{
             [data.name]:{
-              playerName:data.name,
-              playerMail:data.mail
+              playerName:`${data.name}-${data.mail}`
             } 
           },
-          owner:data.name,
-          ownerMail:data.mail,
+          owner:`${data.name}-${data.mail}`,
           price:data.budget,
-          id:id
+          id:id 
       }
     })
 
@@ -79,8 +77,7 @@ export default function Home() {
     const reference = ref(db, 'room/' + `${data.code}/` + 'players/');
     update(reference,{
         [data.name]: {
-          playerMail:data.mail,
-          playerName:data.name
+          playerName:`${data.name}-${data.mail}`
         }
       
     })
