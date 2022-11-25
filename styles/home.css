@@ -1,0 +1,54 @@
+.form {
+}
+
+.btn-primary{
+    background-color: transparent;
+    color: black;
+    margin: 10px;
+}
+
+.modalFrom-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.modalFrom-wrapper input{
+    background-color: transparent;
+    color: black;
+}
+
+
+.not-showing {
+    display: none;
+    height: 50px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+}
+    
+.showing {
+    display: block;
+    transition: visibility 1s, opacity 0.5s linear;
+    opacity: 1;
+    height: 50px;
+    margin-top: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.compliteForm{
+    background-color: #34BE4682;
+    display: flex;
+    flex-direction: column;
+}
+.compliteForm span{
+    padding: 100px;
+}
+.compliteForm button{
+    width: 50px;
+margin-left: 75%;
+}
+

@@ -1,0 +1,9 @@
+.nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.link{
+  margin: 30px;
+}
