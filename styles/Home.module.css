@@ -3,7 +3,17 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background-color: #0F8A5F;
+  padding-top: 50px;
+}
+.link{
+color: white;
+text-decoration: none;
 }
 .link{
   margin: 30px;
+}
+
+.navWrapper{
+
 }
