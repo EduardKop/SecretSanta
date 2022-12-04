@@ -4,12 +4,20 @@ import { getDatabase,ref,set,once,on,update,onValue} from 'firebase/database';
 import { nanoid } from 'nanoid'
 import Nav from '../components/nav'
 import ChristmasLights from '../components/christmasLights';
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
+
 
 export default function Home() {
+
+  async function run() {
+    const response = await mailchimp.ping.get();
+    console.log(response);
+  }
   const [isShownCreateModal, setisShownCreateModal] = useState(false);
   const [isShownConnectWindow, setIsShownConnectWindow] = useState(false);
   const [isShownStartModal, setisShownStartModal] = useState(false);
-  const [startEmails,isShownMailsModal] = useState(false);
+  const [ShownMailsModal,setShownMailsModal] = useState(false);
   const [allPlayers, setAllPlayers] = useState([])
   const [budget,setBudget] = useState('')
   const [name, setName] = useState('')
@@ -21,7 +29,7 @@ export default function Home() {
   const [createModalWindowTextContent,setcreateModalWindowTextContent] = useState('')
   const [startModalWindowTextContent,setstartModalWindowTextContent] = useState('')
   const [emailsModalWindowTextContent,setemailsModalWindowTextContent] = useState('')
-
+  const [btnClassChangeDoneMailResult,setbtnClassChangeDoneMailResult] = useState('btn gameForm-btn')
 
 //створення групи 
   const closeCreateModalWindow = event => {
@@ -106,7 +114,7 @@ export default function Home() {
       onValue(reference, (el) => {
           try {
           console.log(el.val().id)
-          setconnectModalWindowTextContent('вірно')
+          setconnectModalWindowTextContent('готово')
           connectRommFirebase()
           }catch(err){
           console.log('код не вірний')
@@ -145,6 +153,8 @@ export default function Home() {
   const startForm = async (event) => {
     // setAllPlayers([])
   setAllPlayers([])
+  setbtnClassChangeDoneMailResult('btn gameForm-btn')
+
   event.preventDefault()
   const data = {
     code: event.target.code.value
@@ -195,8 +205,48 @@ export default function Home() {
   
   //старт після перевірки
   const startEmailsGame = event => {
-    console.log('emails')
-    isShownMailsModal(current => !current);
+    setstartModalWindowTextContent('готово')
+    setbtnClassChangeDoneMailResult('none')
+
+  //  allPlayers
+  const shuffle = (arr) => {
+      for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  };
+  
+  const randomNames = shuffle(allPlayers);
+  
+  const matches = randomNames.map((name, index) => {
+      return {
+      santaName: name.split('-')[0],
+      receiverName: (randomNames[index + 1] || randomNames[0]).split('-')[0],
+      santa: name.split('-')[1],
+      receiver: (randomNames[index + 1] || randomNames[0]).split('-')[1],
+      };
+  });
+  
+  for (let i =0; i < matches.length; i++){
+    console.log(matches[i])
+    var templateParams = {
+      receiverMail:matches[i].receiver,
+      reciverName:matches[i].receiverName,
+      santaName:matches[i].santaName,
+      santaEmail: matches[i].santa,
+      message:'Helo 112312123123123'
+  };
+   
+  emailjs.send('service_b38za18', 'template_ed7n5xh', templateParams, 'Q7lWdDmc7LlpNWzVv')
+      .then(function(response) {
+         console.log('SUCCESS!', response.status, response.text);
+      }, function(error) {
+         console.log('FAILED...', error);
+      });
+  }
+
+
 
   }
 
@@ -284,7 +334,7 @@ export default function Home() {
       <label htmlFor="budget">Код групи</label>
       <input type="text" id="code" name="code" onChange={(e) => setCode(e.target.value)} required />
 
-      <button type="submit"  onClick={closeConnectModalWindow}  data-bs-dismiss="modal" aria-label="Close">Створити</button>
+      <button type="submit"  onClick={closeConnectModalWindow}  data-bs-dismiss="modal" aria-label="Close">Підключитись</button>
     </form>
     
             </div>
@@ -351,14 +401,11 @@ export default function Home() {
       {allPlayers.map((player) => {
           return <h3>{player}</h3>
         })}
-        <button type="button"  onClick={startEmailsGame}  data-bs-dismiss="modal" aria-label="Close" >Все вірно</button>
-
-      </div>
+        <button type="button" method="post" className={btnClassChangeDoneMailResult} onClick={startEmailsGame} >все вірно 🧑‍🎄</button>
+     
+      </div>  
     </div> 
-    {/* вікно після перевірок - для старту гри */}
-    <div  className={isShownMailsModal ? 'showing' : 'not-showing'}> 
-    {emailsModalWindowTextContent}
-    </div>
+   
     </div>
   
   )

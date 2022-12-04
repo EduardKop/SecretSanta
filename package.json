@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.10.0",
+    "@sendgrid/mail": "^7.7.0",
     "bootstrap": "^5.2.3",
     "firebase": "^9.14.0",
     "firebase-admin": "^11.3.0",
