@@ -195,8 +195,18 @@ export default function Home() {
       arr.push(el.val().players[key].playerName)
       
     }
-    setAllPlayers(arr)
-
+    // setBudget(el.val().price)
+    // setAllPlayers(arr)
+    localStorage.setItem('allPlayers', JSON.stringify(arr));
+    const players = JSON.parse(localStorage.getItem('allPlayers'));
+    if (players) {
+      setAllPlayers(players);
+    }
+    localStorage.setItem('price', JSON.stringify(el.val().price));
+    const budget = JSON.parse(localStorage.getItem('price'));
+    if (budget) {
+      setBudget(budget);
+    }
   });
 }
   // + 
@@ -216,8 +226,9 @@ export default function Home() {
     }
     return arr;
   };
-  
-  const randomNames = shuffle(allPlayers);
+  const players = JSON.parse(localStorage.getItem('allPlayers'));
+ 
+  const randomNames = shuffle(players);
   
   const matches = randomNames.map((name, index) => {
       return {
@@ -227,7 +238,6 @@ export default function Home() {
       receiver: (randomNames[index + 1] || randomNames[0]).split('-')[1],
       };
   });
-  
   for (let i =0; i < matches.length; i++){
     console.log(matches[i])
     var templateParams = {
@@ -235,7 +245,7 @@ export default function Home() {
       reciverName:matches[i].receiverName,
       santaName:matches[i].santaName,
       santaEmail: matches[i].santa,
-      message:'Helo 112312123123123'
+      budget:budget
   };
    
   emailjs.send('service_b38za18', 'template_ed7n5xh', templateParams, 'Q7lWdDmc7LlpNWzVv')
