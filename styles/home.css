@@ -195,7 +195,7 @@ color: #3F5328;
 }
 
 .modalFrom-wrapper input{
-
+    border: 1px solid black;
     background: rgba(249, 245, 233, 0.46);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(2.3px);

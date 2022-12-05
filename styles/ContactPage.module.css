@@ -1,0 +1,48 @@
+@font-face{
+    font-family: 'GilroyBold';
+    src: url("../fonts/Gilroy-ExtraBold.otf");
+    font-style: regular;
+    font-display: swap;
+    font-weight: 600;
+}
+.contactWrap{
+    font-family: 'GilroyBold';
+    display: flex;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    color: #F6EFE6;
+}
+.contactWrap a{
+    color: #34A65F;
+}
+
+@media screen  and (max-width: 495px){
+    .contactWrap{
+        font-family: 'GilroyBold';
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 100px;
+        color: #F6EFE6;
+        flex-direction: column;
+    }
+}
+
+@media screen  and (max-width: 330px){
+    .contactWrap{
+        font-family: 'GilroyBold';
+        display: flex;
+        flex-wrap: nowrap;
+        margin-top: 100px;
+        color: #F6EFE6;
+        align-content: center;
+        align-items: stretch;
+        justify-content: center;
+        flex-direction: column;
+    
+    }
+}
