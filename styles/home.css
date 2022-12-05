@@ -1,5 +1,37 @@
-
+@font-face {
+    font-family: 'Lobster';
+    src: url("../fonts//Lobster-Regular.ttf") ;
+    font-style: regular;
+    font-display: swap;
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: 'Christmas';
+    src: url("../fonts/WelcomeChristmasFont.ttf") ;
+    font-style: regular;
+    font-display: swap;
+    font-weight: 300;
+  }
+  @font-face{
+    font-family: 'GilroyLight';
+    src: url("../fonts/Gilroy-Light.otf");
+    font-style: regular;
+    font-display: swap;
+    font-weight: 200;
+}
+@font-face{
+    font-family: 'GilroyBold';
+    src: url("../fonts/Gilroy-ExtraBold.otf");
+    font-style: regular;
+    font-display: swap;
+    font-weight: 500;
+}
+body{
+    background-color: #235E6F;
+    
+}
 .gameForm{
+    font-family: 'Christmas';
     display: flex;
     flex-direction: column;
     background-color:#34A65F;
@@ -10,14 +42,20 @@
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
+.gameForm button{
+    color: #40552A;;
+}
 .none{
     display: none;
 }
+
 .gameForm-btn{
     outline: 0!important;
-    width: 250px;
-    background: white;
-    margin-top: 10px;
+    width: 288px;
+    height: 50px;
+    background: #F9F5E9;
+    margin-top: 11px;
+    font-size: 20px;
     box-shadow: rgba(125, 252, 99, 0.25) 0px 30px 60px -12px inset, rgba(73, 253, 121, 0.3) 0px 18px 36px -18px inset;
 
 }
@@ -41,13 +79,48 @@
 }
 .gameForm-wrapper{
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
-.modal-content{
+.containerWrap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+.showingPlayer{
+    background-color: red;
+    display: block;
+}
+.not-showingPlayer{
+    display: none;
+}
 
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+.modal-content{
+   background-color: #F6EFE6;
 }
 .modal-body{
+    /* background-color: #F9F5E9; */
+    background-color: transparent;
 
+}
+.modal-dialog{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+.modal-header{
+    /* background-color: #F9F5E9; */
+    background: rgba(249, 245, 233, 0.86);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.5px);
+-webkit-backdrop-filter: blur(5.5px);
+color: #3F5328;
 }
 .modal-body input{
     text-decoration: none!important;
@@ -85,21 +158,62 @@
     color: black;
     margin: 10px;
 }
-.wrapper{
-    background-color: #0F8A5F;
 
+.wrapper{
+    margin: 100px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.wrapper img{
+    width: 70px;
+    height: 70px;
+
+}
+.imgWrapper{
+    position: absolute;
+    z-index: 3;
+    margin-top: -40px;
 }
 
 .modalFrom-wrapper{
     display: flex;
     flex-direction: column;
 }
-
-.modalFrom-wrapper input{
-    background-color: transparent;
-    color: black;
+.modalFrom-wrapper label{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    font-size: 25px;
+    
 }
 
+.modalFrom-wrapper input{
+
+    background: rgba(249, 245, 233, 0.46);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.3px);
+    -webkit-backdrop-filter: blur(2.3px);
+    
+    color: black;
+    width: 70%;
+    margin: 0 auto;
+    height: 40px;
+    font-family: 'Lobster';
+
+}
+.modalFrom-wrapper button{
+   /* From https://css.glass */
+    background-color: #34A65F;
+    border: none;
+    
+}
 
 .not-showing {
     display: none;
@@ -111,20 +225,21 @@
 }
     
 .showing {
-    display: block;
     transition: visibility 1s, opacity 0.5s linear;
     opacity: 1;
     height: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    max-width: 500px;
+    position: absolute;
+    margin-top: 300px;
+   
 }
 
 .compliteForm{
-    background-color: #34BE4682;
+    background-color: white;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
+    
 }
 .ErrorForm{
     background-color: #be343482;
@@ -139,13 +254,49 @@
 margin-left: 75%;
 }
 
-.compliteForm span{
-    padding: 100px;
+.compliteForm {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    min-width: 200px;
+    min-height: 100px;
+    background-color: #F6EFE6;
+
 }
-.compliteForm button{
-    width: 50px;
-margin-left: 75%;
+.content{
+    margin:25px;
+    margin-top: 1px;
+    font-family: 'GilroyBold';
+    color: #F5624D;
+
 }
+.contentWindowStartGame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    font-family: 'GilroyBold';
+    color: #F5624D;
+
+}
+.contentWindowStartGame button{
+    width: auto;
+}
+.close{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.close-btn{
+    width: 30px;
+    margin: 5px;
+background-color: #F5624D;
+border-radius: 100%;
+color: white;
+border-color: transparent;
+}
+.start-btn{
+    width: 100px;
+}
+
 
 .lightrope {
     text-align: center;
@@ -218,7 +369,7 @@ margin-left: 75%;
     content: none;
 }
 .lightrope li:first-child {
-    margin-left: -40px;
+    /* margin-left: -40px; */
 }
 @keyframes flash-1 {
     0%, 100% {

@@ -4,6 +4,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 import '../styles/home.css'
 import Snowfall from 'react-snowfall'
+import Footer from '../components/footer';
 
 
 
@@ -14,11 +15,14 @@ function MyApp({ Component, pageProps }) {
 
   return (
   <>
-      <div style={{  }}>
-    <Snowfall   snowflakeCount={100} />
-    <Component {...pageProps} />
 
-  </div>
+    <Snowfall  style={{
+    // zIndex:1
+  }}/>
+      <Component {...pageProps} />
+
+  <Footer />
+
   </>)
 }
 

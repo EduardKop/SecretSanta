@@ -1,17 +1,43 @@
+@font-face {
+  font-family: 'Christmas';
+  src: url("../fonts/WelcomeChristmasFont.ttf") ;
+  font-style: regular;
+  font-display: swap;
+  font-weight: 300;
+}
+@font-face{
+  font-family: 'GilroyBold';
+  src: url("../fonts/Gilroy-ExtraBold.otf");
+  font-style: regular;
+  font-display: swap;
+  font-weight: 600;
+}
 .nav{
+  font-family: 'GilroyBold';
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #0F8A5F;
+  background-color: #235E6F;
   padding-top: 50px;
 }
+.ul a{
+  padding: 10px;
+}
+.ul {
+  padding: 0px;
+  margin-top: 20px;
+}
+.ul a:hover{
+  color: #44532C;
+
+}
 .link{
-color: white;
+color: #F9F5E9;
 text-decoration: none;
 }
 .link{
-  margin: 30px;
+  /* margin: 30px; */
 }
 
 .navWrapper{

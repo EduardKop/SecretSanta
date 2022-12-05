@@ -1,0 +1,76 @@
+@font-face{
+    font-family: 'Christmas';
+    src: url("../fonts/WelcomeChristmasFont.ttf");
+    font-style: regular;
+    font-display: swap;
+    font-weight: 500;
+}
+@font-face{
+    font-family: 'GilroyLight';
+    src: url("../fonts/Gilroy-Light.otf");
+    font-style: regular;
+    font-display: swap;
+    font-weight: 200;
+}
+@font-face{
+    font-family: 'GilroyBold';
+    src: url("../fonts/Gilroy-ExtraBold.otf");
+    font-style: regular;
+    font-display: swap;
+    font-weight: 600;
+}
+
+.descriptionWrapperImg img{
+    width: 323px;
+    height: 416px;
+}
+
+.descriptionWrapperNav{
+    color: white;
+}
+
+.descriptionWrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.descriptionWrapperNav nav ul {
+padding: 5px;
+font-family: 'GilroyLight';
+
+}
+.descriptionWrapperNav nav ul b{
+    font-family: 'GilroyBold';
+    
+    }
+.descriptionWrapperNav nav li {
+    list-style-type: none; 
+    color: #F6EFE6;
+}
+.descriptionWrapperNav nav li span{
+    padding-left: 13px;
+}
+@media screen  and (max-width: 650px){
+.descriptionWrapper{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+}
+.descriptionWrapperNav nav li span{
+    padding-left: 0px;
+}
+.descriptionWrapperNav nav ul {
+    padding: 5px;
+    height: 400px;
+    }
+}
+@media screen  and (max-width: 390px){
+    .descriptionWrapperNav nav ul {
+        padding: 5px;
+        height: 550px;
+        }
+}

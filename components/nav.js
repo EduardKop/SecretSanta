@@ -7,9 +7,9 @@ function Nav () {
         <div className={styles.navWrapper}>
             <nav className={styles.nav}>
                 <ul className={styles.ul}>
-                    <Link href="/" className={styles.link}>Home</Link>
-                    <Link href="/info" className={styles.link}>Info</Link>
-                    <Link href="/contacts" className={styles.link}>Contacts</Link>
+                    <Link href="/" className={styles.link}>ГОЛОВНА</Link>
+                    <Link href="/info" className={styles.link}>ІНФОРМАЦІЯ</Link>
+                    <Link href="/contacts" className={styles.link}>КОНТАКТИ</Link>
                 </ul>
             </nav>
         </div>

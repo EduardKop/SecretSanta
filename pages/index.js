@@ -6,7 +6,9 @@ import Nav from '../components/nav'
 import ChristmasLights from '../components/christmasLights';
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
-
+import Description from '../components/description';
+import Image from 'next/image'
+import leaf from '../img/leaf.png'
 
 export default function Home() {
 
@@ -29,12 +31,11 @@ export default function Home() {
   const [createModalWindowTextContent,setcreateModalWindowTextContent] = useState('')
   const [startModalWindowTextContent,setstartModalWindowTextContent] = useState('')
   const [emailsModalWindowTextContent,setemailsModalWindowTextContent] = useState('')
-  const [btnClassChangeDoneMailResult,setbtnClassChangeDoneMailResult] = useState('btn gameForm-btn')
+  const [btnClassChangeDoneMailResult,setbtnClassChangeDoneMailResult] = useState('start-btn')
 
 //створення групи 
   const closeCreateModalWindow = event => {
     setId(nanoid(5))
-    // 👇️ toggle visibility
     if (mail == '' || budget == '' || name == '') {
       setcreateModalWindowTextContent('ви не заповнили усі поля')
     }
@@ -151,41 +152,40 @@ export default function Home() {
     
   };
   const startForm = async (event) => {
-    // setAllPlayers([])
   setAllPlayers([])
-  setbtnClassChangeDoneMailResult('btn gameForm-btn')
 
   event.preventDefault()
   const data = {
     code: event.target.code.value
   }
   
-  if (code === '') {
+  if (data.code === '') {
     setstartModalWindowTextContent('введіть код')
+    setbtnClassChangeDoneMailResult('none')
+
   }else {
     const reference = ref(db, 'room/' + `${data.code}/`);
     onValue(reference, (el) => {
       try {
-      console.log(el.val().id)
        
     setstartModalWindowTextContent(
       `
-    перевірьте чи всі гравці є у гр, також перевірьте чи кількість гравцій є парною, щоб хтось не залишився без подарунка.
+    перевірьте чи всі гравці є у грі, також перевірьте чи кількість гравцій є парною, щоб хтось не залишився без подарунка.
     Якщо все вірно - натисни кнопку нижче
       `
     )
+    setbtnClassChangeDoneMailResult('start-btn')
+
       startRommFirebase()
       }catch(err){
       console.log('код не вірний')
-      setstartModalWindowTextContent('групу не знайдено, перевірьте кож')
+      setstartModalWindowTextContent('групу не знайдено, перевірьте код')
+      setbtnClassChangeDoneMailResult('none')
       }
-
-// setAllPlayers(arr)
 
 });
   }
   
-  // Get data from the form.
   async function startRommFirebase() {
 
   const referenceRoom = ref(db, 'room/' + `${data.code}/`);
@@ -195,8 +195,6 @@ export default function Home() {
       arr.push(el.val().players[key].playerName)
       
     }
-    // setBudget(el.val().price)
-    // setAllPlayers(arr)
     localStorage.setItem('allPlayers', JSON.stringify(arr));
     const players = JSON.parse(localStorage.getItem('allPlayers'));
     if (players) {
@@ -209,12 +207,12 @@ export default function Home() {
     }
   });
 }
-  // + 
-  
   }
   
   //старт після перевірки
   const startEmailsGame = event => {
+    const players = JSON.parse(localStorage.getItem('allPlayers'));
+    if ( players.length  % 2 === 0 ){  
     setstartModalWindowTextContent('готово')
     setbtnClassChangeDoneMailResult('none')
 
@@ -226,7 +224,6 @@ export default function Home() {
     }
     return arr;
   };
-  const players = JSON.parse(localStorage.getItem('allPlayers'));
  
   const randomNames = shuffle(players);
   
@@ -256,16 +253,26 @@ export default function Home() {
       });
   }
 
-
+}else {
+  setstartModalWindowTextContent(`кількість гравців в кімнаті - ${players.length}, це не парна кількість,
+  щоб почати гру, добавте грався - у кожного має бути таємний санта і кількість гравців має бути парною
+  `)
+  setbtnClassChangeDoneMailResult('none')
+} 
 
   }
 
   return (
+    <>
+          <ChristmasLights />
+          <Nav />
+    <div className='indexApp'>
     <div className='wrapper'>
-      <ChristmasLights />
-      <Nav />
+    <div className='imgWrapper'>
+    <Image  src={leaf}/>
+    </div>
     <div className='gameForm-wrapper'>
-    <div className="d-flex justify-content-center align-items-center gameForm">
+    <div className="gameForm">
 
 
 
@@ -293,13 +300,13 @@ export default function Home() {
             </div>
             <div className="modal-body">
   <form onSubmit={createForm} className='modalFrom-wrapper'>
-      <label htmlFor="name">Твоє Ім'я</label>
+      <label htmlFor="name">🎄 Твоє Ім'я 🎄</label>
       <input type="text" id="name"  onChange={(e) => setName(e.target.value)} name="name" />
 
-      <label htmlFor="mail">Твоя Пошта</label>
+      <label htmlFor="mail">🎄 Твоя Пошта 🎄</label>
       <input type="text" id="mail" onChange={(e) => setMail(e.target.value)} name="mail" />
 
-      <label htmlFor="budget">Бюджет на 1 подарунок (у кожного буде такий бюджет 💸)</label>
+      <label htmlFor="budget">🎄 Бюджет на 1 подарунок 🎄</label>
       <input type="text" id="budget" onChange={(e) => setBudget(e.target.value)} name="budget" />
 
       <button type="submit"  onClick={closeCreateModalWindow}  data-bs-dismiss="modal" aria-label="Close">Створити</button>
@@ -335,13 +342,13 @@ export default function Home() {
             </div>
             <div className="modal-body">
                 <form onSubmit={connectForm} className='modalFrom-wrapper'>
-      <label htmlFor="name">Твоє Ім'я</label>
+      <label htmlFor="name">🎄 Твоє Ім'я 🎄</label>
       <input type="text" id="name"onChange={(e) => setName(e.target.value)}  name="name" required />
 
-      <label htmlFor="mail">Твоя Пошта</label>
+      <label htmlFor="mail">🎄 Твоя Пошта 🎄</label>
       <input type="text" id="mail"  onChange={(e) => setMail(e.target.value)} name="mail" required />
 
-      <label htmlFor="budget">Код групи</label>
+      <label htmlFor="budget">🎄 Код групи 🎄</label>
       <input type="text" id="code" name="code" onChange={(e) => setCode(e.target.value)} required />
 
       <button type="submit"  onClick={closeConnectModalWindow}  data-bs-dismiss="modal" aria-label="Close">Підключитись</button>
@@ -376,7 +383,7 @@ export default function Home() {
             </div>
             <div className="modal-body">
             <form onSubmit={startForm} className='modalFrom-wrapper'>
-      <label htmlFor="code">Код групи</label>
+      <label htmlFor="code">🎄 Код групи 🎄</label>
       <input type="text" id="code"  onChange={(e) => setCode(e.target.value)} name="code" />
 
       <button type="submit"  onClick={closeStartModalWindow}  data-bs-dismiss="modal" aria-label="Close">Почати гру</button>
@@ -389,34 +396,52 @@ export default function Home() {
     </div>
     </div>
     {/* вікно після створення кімнати */}
-     <div  className={isShownCreateModal ? 'showing' : 'not-showing'}> 
+    <div  className={isShownCreateModal ? 'showing' : 'not-showing'}> 
       <div className='compliteForm'>
-      <button onClick={closeCreateModalWindow}>X</button>
+      <div className='close'>
+      <button className='close-btn' onClick={closeCreateModalWindow}>x</button>
+      </div>
+      <div className='content'>
       <span>{createModalWindowTextContent}</span>
+      </div>
       </div>
     </div> 
      {/* вікно після підключення до кімнати */}
      <div  className={isShownConnectWindow ? 'showing' : 'not-showing'}> 
       <div className='compliteForm'>
-      <button onClick={closeConnectModalWindow}>X</button>
-      <span><b>{connectModalWindowTextContent}</b></span>
+      <div className='close'>
+      <button className='close-btn' onClick={closeConnectModalWindow}>x</button>
+      </div>
+      <div className='content'>
+      <span>{connectModalWindowTextContent}</span>
+      </div>
       </div>
     </div> 
     {/* вікно після старту гри */}
     <div  className={isShownStartModal ? 'showing' : 'not-showing'}> 
       <div className='compliteForm'>
-      <button onClick={closeStartModalWindow}>X</button>
-     
-     {startModalWindowTextContent}
+      <div className='close'>
+      <button className='close-btn' onClick={closeStartModalWindow}>x</button>
+      </div> 
+      <div className='contentWindowStartGame'>
+      {startModalWindowTextContent}
       {allPlayers.map((player) => {
-          return <h3>{player}</h3>
+          return <>
+          <h5 >{player}</h5>
+        
+          </>
         })}
         <button type="button" method="post" className={btnClassChangeDoneMailResult} onClick={startEmailsGame} >все вірно 🧑‍🎄</button>
+
      
+      </div>
+    
       </div>  
     </div> 
    
     </div>
-  
+          <Description />
+    </div>
+    </>
   )
 }
