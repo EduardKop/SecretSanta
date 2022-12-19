@@ -300,12 +300,13 @@ export default function Home() {
             </div>
             <div className="modal-body">
   <form onSubmit={createForm} className='modalFrom-wrapper'>
-      <label htmlFor="name">🎄 Твоє Ім'я 🎄</label>
+      <label htmlFor="name">🎄 Твоє Ім'я🎄  <span>(Вкажи повне Ім'я та Нову пошту(Місто),телефон в цьому полі через кому, якщо ви граєте з пересилкою)</span></label>
       <input type="text" id="name"  onChange={(e) => setName(e.target.value)} name="name" />
 
-      <label htmlFor="mail">🎄 Твоя Пошта 🎄</label>
+      <label htmlFor="mail">🎄 Твій Email 🎄</label>
       <input type="text" id="mail" onChange={(e) => setMail(e.target.value)} name="mail" />
 
+  
       <label htmlFor="budget">🎄 Бюджет на 1 подарунок 🎄</label>
       <input type="text" id="budget" onChange={(e) => setBudget(e.target.value)} name="budget" />
 
@@ -342,10 +343,10 @@ export default function Home() {
             </div>
             <div className="modal-body">
                 <form onSubmit={connectForm} className='modalFrom-wrapper'>
-      <label htmlFor="name">🎄 Твоє Ім'я 🎄</label>
+      <label htmlFor="name">🎄 Твоє Ім'я 🎄 <span>(Вкажи повне Ім'я та Нову пошту,телефон в цьому полі через кому, якщо ви граєте з пересилкою)</span></label>
       <input type="text" id="name"onChange={(e) => setName(e.target.value)}  name="name" required />
 
-      <label htmlFor="mail">🎄 Твоя Пошта 🎄</label>
+      <label htmlFor="mail">🎄 Твій Email 🎄</label>
       <input type="text" id="mail"  onChange={(e) => setMail(e.target.value)} name="mail" required />
 
       <label htmlFor="budget">🎄 Код групи 🎄</label>

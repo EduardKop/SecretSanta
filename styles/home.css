@@ -185,12 +185,17 @@ color: #3F5328;
     display: flex;
     flex-direction: column;
 }
+.modalFrom-wrapper span{
+    text-align: center;
+    font-size: 20px;
+}
 .modalFrom-wrapper label{
     display: flex;
-    flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
     font-size: 25px;
+    flex-direction: column;
+    align-items: center;
     
 }
 

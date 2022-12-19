@@ -11,7 +11,9 @@ function Footer(){
       width: '100%',
     }}><span>© 2022 Eduard</span></p>
 
+        <div className={styles.div}>
 
+        </div>
         </footer>
     )
 }
