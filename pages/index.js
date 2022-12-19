@@ -85,17 +85,12 @@ export default function Home() {
 
 //підключення до групи
   const closeConnectModalWindow = event => {
-    // setId(nanoid(5))
-    // 👇️ toggle visibility
+ 
     if (mail == '' || budget == '' || name == '') {
       setconnectModalWindowTextContent('ви не заповнили усі поля')
     }
     setIsShownConnectWindow(current => !current);  
 
-        
-
-          // setAllPlayers(arr)
-          // connectRommFirebase()
   };
 
   const connectForm = async (event) => {
@@ -116,7 +111,13 @@ export default function Home() {
           try {
           console.log(el.val().id)
           setconnectModalWindowTextContent('готово')
-          connectRommFirebase()
+          const reference = ref(db, 'room/' + `${data.code}/` + 'players/');
+          update(reference,{
+              [data.name]: {
+                playerName:`${data.name}-${data.mail}`
+              }
+            
+          })
           }catch(err){
           console.log('код не вірний')
           setconnectModalWindowTextContent('код не вірний')
@@ -129,16 +130,9 @@ export default function Home() {
   }
   //Firebase data connect to room
   async function connectRommFirebase() {
-    const reference = ref(db, 'room/' + `${data.code}/` + 'players/');
-    update(reference,{
-        [data.name]: {
-          playerName:`${data.name}-${data.mail}`
-        }
-      
-    })
+  
   }
 
- 
   }
 
 //старт гри
