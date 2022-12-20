@@ -93,6 +93,10 @@ export default function Home() {
   const connectForm = async (event) => {
 
   event.preventDefault()
+  function isValidKey(key) {
+    // Return false if the key is an empty string or contains an invalid character
+    return key !== "" && !/[.#\$\/\[\]]/.test(key);
+  }
 
   // Get data from the form.
   const data = {
@@ -106,19 +110,22 @@ export default function Home() {
       if (mail == '' || code == '' || name == '') {
         console.log('введіть дані')
       }else {
-            
+            console.log(name)
             setconnectModalWindowTextContent('готово')
             const reference = ref(db, 'room/' + `${code}/` + 'players/');
-            update(reference,{
+            if (isValidKey(name)) {
+              update(reference,{
                 [name]: {
                   playerName:`${name}~${mail}`
                 }
               
             })
-          
-    
-    // setAllPlayers(arr)
+            } else {
+              console.log('присутні заборонені символи')
+              setconnectModalWindowTextContent('Присутні заборонені символи .#\$\/\[\]')
 
+            }
+          
     
   }
 
