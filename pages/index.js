@@ -106,7 +106,7 @@ export default function Home() {
       if (mail == '' || code == '' || name == '') {
         console.log('введіть дані')
       }else {
-            try {
+            
             setconnectModalWindowTextContent('готово')
             const reference = ref(db, 'room/' + `${code}/` + 'players/');
             update(reference,{
@@ -115,10 +115,7 @@ export default function Home() {
                 }
               
             })
-            }catch(err){
-            console.log('код не вірний')
-            setconnectModalWindowTextContent('код не вірний')
-            }
+          
     
     // setAllPlayers(arr)
 
