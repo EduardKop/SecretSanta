@@ -12,10 +12,7 @@ import leaf from '../img/leaf.png'
 
 export default function Home() {
 
-  async function run() {
-    const response = await mailchimp.ping.get();
-    console.log(response);
-  }
+
   const [isShownCreateModal, setisShownCreateModal] = useState(false);
   const [isShownConnectWindow, setIsShownConnectWindow] = useState(false);
   const [isShownStartModal, setisShownStartModal] = useState(false);
@@ -33,7 +30,7 @@ export default function Home() {
   const [emailsModalWindowTextContent,setemailsModalWindowTextContent] = useState('')
   const [btnClassChangeDoneMailResult,setbtnClassChangeDoneMailResult] = useState('start-btn')
 
-//створення групи 
+  //створення групи 
   const closeCreateModalWindow = event => {
     setId(nanoid(5))
     if (mail == '' || budget == '' || name == '') {
@@ -83,7 +80,7 @@ export default function Home() {
 
   }
 
-//підключення до групи
+  //підключення до групи
   const closeConnectModalWindow = event => {
  
     if (mail == '' || budget == '' || name == '') {
@@ -130,7 +127,7 @@ export default function Home() {
 
   }
 
-//старт гри
+  //старт гри
   const closeStartModalWindow = event => {
     // setId(nanoid(5))
     // 👇️ toggle visibility
@@ -225,7 +222,6 @@ export default function Home() {
       };
   });
   for (let i =0; i < matches.length; i++){
-    console.log(matches[i])
     var templateParams = {
       receiverMail:matches[i].receiver,
       reciverName:matches[i].receiverName,
@@ -253,12 +249,14 @@ export default function Home() {
 
   return (
     <>
+
           <ChristmasLights />
           <Nav />
+
     <div className='indexApp'>
     <div className='wrapper'>
     <div className='imgWrapper'>
-    <Image  src={leaf}/>
+          <Image  src={leaf}/>
     </div>
     <div className='gameForm-wrapper'>
     <div className="gameForm">
@@ -332,7 +330,10 @@ export default function Home() {
             </div>
             <div className="modal-body">
                 <form onSubmit={connectForm} className='modalFrom-wrapper'>
-      <label htmlFor="name">🎄 Твоє Ім'я 🎄 <span>(Вкажи повне Ім'я та Нову пошту,телефон в цьому полі через кому, якщо ви граєте з пересилкою)</span></label>
+      <label htmlFor="name">🎄 Твоє Ім'я 🎄 
+      <span>
+      (Вкажи повне Ім'я та Нову пошту,телефон <br></br>
+      в цьому полі через кому, якщо ви граєте з пересилкою)</span></label>
       <input type="text" id="name"onChange={(e) => setName(e.target.value)}  name="name" required />
 
       <label htmlFor="mail">🎄 Твій Email 🎄</label>
@@ -373,7 +374,11 @@ export default function Home() {
             </div>
             <div className="modal-body">
             <form onSubmit={startForm} className='modalFrom-wrapper'>
-      <label htmlFor="code">🎄 Код групи 🎄</label>
+      <label htmlFor="code">🎄 Код групи 🎄
+      <span>
+      не потрібно розпочинати гру, якщо всі <br></br>
+      гравці ще не в групі, найкраще рішення, <br></br>
+      щоб гру розпочинав той, хто створював групу</span></label>
       <input type="text" id="code"  onChange={(e) => setCode(e.target.value)} name="code" />
 
       <button type="submit"  onClick={closeStartModalWindow}  data-bs-dismiss="modal" aria-label="Close">Почати гру</button>

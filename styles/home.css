@@ -48,7 +48,9 @@ body{
 .none{
     display: none;
 }
-
+.startGameWandow {
+    font-size: 10px;
+}
 .gameForm-btn{
     outline: 0!important;
     width: 288px;
@@ -198,7 +200,14 @@ color: #3F5328;
     align-items: center;
     
 }
-
+.modalFrom-wrapper label span{
+    font-size: 12px;
+    font-family: 'GilroyBold';
+    padding: 10px;
+    /* color:rgb(238, 51, 89); */
+    color: #0c6b4a;
+    max-width: 360px;
+ }
 .modalFrom-wrapper input{
     border: 1px solid black;
     background: rgba(249, 245, 233, 0.46);
@@ -210,7 +219,8 @@ color: #3F5328;
     width: 70%;
     margin: 0 auto;
     height: 40px;
-    font-family: 'Lobster';
+    font-family: 'GilroyBold';
+    color: #0c6b4a;
 
 }
 .modalFrom-wrapper button{

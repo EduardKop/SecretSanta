@@ -9,7 +9,7 @@ function Footer(){
         <p className={styles.footerP} style={{
       backgroundImage: `url(${snowFooterIng.src})`,
       width: '100%',
-    }}><span>© 2022 Eduard</span></p>
+    }}><span>© 2022</span></p>
 
         <div className={styles.div}>
 
