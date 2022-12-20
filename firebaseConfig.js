@@ -3,15 +3,14 @@ import { getDatabase } from "firebase/database";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBp9SHWUPbqiujMzAzuefmcGXkzDexblbk",
-  authDomain: "secret-santa-7475d.firebaseapp.com",
-  databaseURL: "https://secret-santa-7475d-default-rtdb.firebaseio.com",
-  projectId: "secret-santa-7475d",
-  storageBucket: "secret-santa-7475d.appspot.com",
-  messagingSenderId: "64480027082",
-  appId: "1:64480027082:web:3f4e6887701e01c39eaf33"
+  apiKey: "AIzaSyCg-uZ0GH07B1OQEjmEQu-iyK_u9-FqKYE",
+  authDomain: "secret-santa-60b8e.firebaseapp.com",
+  databaseURL: "https://secret-santa-60b8e-default-rtdb.firebaseio.com",
+  projectId: "secret-santa-60b8e",
+  storageBucket: "secret-santa-60b8e.appspot.com",
+  messagingSenderId: "63630209882",
+  appId: "1:63630209882:web:7a3c136fc79daa17f1b963"
 };
-
 
 
 export const app = initializeApp(firebaseConfig);

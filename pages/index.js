@@ -70,10 +70,10 @@ export default function Home() {
         [id]: {
             "players":{
               [data.name]:{
-                playerName:`${data.name}-${data.mail}`
+                playerName:`${data.name}~${data.mail}`
               } 
             },
-            owner:`${data.name}-${data.mail}`,
+            owner:`${data.name}~${data.mail}`,
             price:data.budget,
             id:id 
         }
@@ -103,34 +103,29 @@ export default function Home() {
     mail: event.target.mail.value,
     code: event.target.code.value,
   }
+  setName(data.name)
+  setMail(data.mail)
+  setCode(data.code)
       if (mail == '' || code == '' || name == '') {
         console.log('введіть дані')
       }else {
-      const reference = ref(db, 'room/' + `${data.code}/`);
-      onValue(reference, (el) => {
-          try {
-          console.log(el.val().id)
-          setconnectModalWindowTextContent('готово')
-          const reference = ref(db, 'room/' + `${data.code}/` + 'players/');
-          update(reference,{
-              [data.name]: {
-                playerName:`${data.name}-${data.mail}`
-              }
-            
-          })
-          }catch(err){
-          console.log('код не вірний')
-          setconnectModalWindowTextContent('код не вірний')
-          }
+            try {
+            setconnectModalWindowTextContent('готово')
+            const reference = ref(db, 'room/' + `${code}/` + 'players/');
+            update(reference,{
+                [name]: {
+                  playerName:`${name}~${mail}`
+                }
+              
+            })
+            }catch(err){
+            console.log('код не вірний')
+            setconnectModalWindowTextContent('код не вірний')
+            }
     
     // setAllPlayers(arr)
 
-  });
     
-  }
-  //Firebase data connect to room
-  async function connectRommFirebase() {
-  
   }
 
   }
@@ -223,10 +218,10 @@ export default function Home() {
   
   const matches = randomNames.map((name, index) => {
       return {
-      santaName: name.split('-')[0],
-      receiverName: (randomNames[index + 1] || randomNames[0]).split('-')[0],
-      santa: name.split('-')[1],
-      receiver: (randomNames[index + 1] || randomNames[0]).split('-')[1],
+      santaName: name.split('~')[0],
+      receiverName: (randomNames[index + 1] || randomNames[0]).split('~')[0],
+      santa: name.split('~')[1],
+      receiver: (randomNames[index + 1] || randomNames[0]).split('~')[1],
       };
   });
   for (let i =0; i < matches.length; i++){
