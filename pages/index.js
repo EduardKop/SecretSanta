@@ -72,7 +72,7 @@ export default function Home() {
             },
             owner:`${data.name}~${data.mail}`,
             price:data.budget,
-            id:id 
+            id:id
         }
       })
     }
@@ -99,14 +99,7 @@ export default function Home() {
   }
 
   // Get data from the form.
-  const data = {
-    name: event.target.name.value,
-    mail: event.target.mail.value,
-    code: event.target.code.value,
-  }
-  setName(data.name)
-  setMail(data.mail)
-  setCode(data.code)
+
       if (mail == '' || code == '' || name == '') {
         console.log('введіть дані')
       }else {
@@ -225,6 +218,10 @@ export default function Home() {
       receiver: (randomNames[index + 1] || randomNames[0]).split('~')[1],
       };
   });
+  console.log(matches)
+  for (let i = 0;i < matches.length; i++ ){
+    console.log(matches[i])
+  }
   for (let i =0; i < matches.length; i++){
     var templateParams = {
       receiverMail:matches[i].receiver,
@@ -256,6 +253,7 @@ export default function Home() {
 
           <ChristmasLights />
           <Nav />
+
 
     <div className='indexApp'>
     <div className='wrapper'>
@@ -444,3 +442,5 @@ export default function Home() {
     </>
   )
 }
+
+
