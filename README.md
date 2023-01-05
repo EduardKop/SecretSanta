@@ -21,7 +21,6 @@ These instructions will get you a copy of the project up and running on your loc
 <br/>
 
 ### Prerequisites
----
 Make sure you have the following installed on your system:
 
 -   [Git](https://git-scm.com/)
@@ -31,7 +30,6 @@ Make sure you have the following installed on your system:
 <br/>
 
 ### Installation
----
 1.  Clone the repository
 
 ```sh
